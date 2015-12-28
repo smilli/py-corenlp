@@ -1,0 +1,1 @@
+from corenlp import StanfordCoreNLP
