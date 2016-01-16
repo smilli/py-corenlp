@@ -1,6 +1,11 @@
 # py-corenlp
 Python wrapper for Stanford CoreNLP.  This simply wraps the API from the server included with CoreNLP 3.6.0.  See the CoreNLP server [API documentation](http://stanfordnlp.github.io/CoreNLP/corenlp-server.html#api-documentation) for details.
 
+# Install
+```
+pip install pycorenlp
+```
+
 # Usage
 First make sure you have the Stanford CoreNLP server running.  See [the instructions here](http://stanfordnlp.github.io/CoreNLP/corenlp-server.html#getting-started) for how to do that.
 
