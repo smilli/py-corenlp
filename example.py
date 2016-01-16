@@ -1,4 +1,4 @@
-from corenlp import StanfordCoreNLP
+from pycorenlp import StanfordCoreNLP
 
 if __name__ == '__main__':
     nlp = StanfordCoreNLP('http://localhost:9000')

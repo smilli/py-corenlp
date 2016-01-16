@@ -1,1 +1,1 @@
-from corenlp import StanfordCoreNLP
+from pycorenlp.corenlp import StanfordCoreNLP
