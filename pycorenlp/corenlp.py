@@ -15,10 +15,10 @@ class StanfordCoreNLP:
                 'properties': str(properties)
             }, data=text)
         output = r.text
-        if ('outputFormat' in properties 
+        if ('outputFormat' in properties
              and properties['outputFormat'] == 'json'):
             try:
-                output = json.loads(output)
+                output = json.loads(output, strict=False)
             except:
                 pass
         return output
