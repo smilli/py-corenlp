@@ -10,6 +10,13 @@ class StanfordCoreNLP:
     def annotate(self, text, properties=None):
         if not properties:
             properties = {}
+            
+        # Checks that the Stanford CoreNLP server is started.
+        assert requests.get(nlp.server_url).ok, \
+        str('Check whether you have started the CoreNLP server, e.g. \n'
+        '$ cd stanford-corenlp-full-2015-12-09/ \n'
+        '$ java -mx4g -cp "*" edu.stanford.nlp.pipeline.StanfordCoreNLPServer')
+        
         r = requests.get(
             self.server_url, params={
                 'properties': str(properties)
