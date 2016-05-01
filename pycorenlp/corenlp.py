@@ -8,26 +8,30 @@ class StanfordCoreNLP:
         self.server_url = server_url
 
     def annotate(self, text, properties=None):
-        if not properties:
+        assert isinstance(text, str)
+        if properties is None:
             properties = {}
-            
+        else:
+            assert isinstance(properties, dict)
+
         # Checks that the Stanford CoreNLP server is started.
         try:
-            requests.get(self.server_url).ok == True
+            requests.get(self.server_url)
         except requests.exceptions.ConnectionError:
             raise Exception('Check whether you have started the CoreNLP server e.g.\n'
             '$ cd stanford-corenlp-full-2015-12-09/ \n'
             '$ java -mx4g -cp "*" edu.stanford.nlp.pipeline.StanfordCoreNLPServer')
-        
-        r = requests.get(
+
+        data = text.encode()
+        r = requests.post(
             self.server_url, params={
                 'properties': str(properties)
-            }, data=text)
+            }, data=data, headers={'Connection': 'close'})
         output = r.text
         if ('outputFormat' in properties
              and properties['outputFormat'] == 'json'):
             try:
-                output = json.loads(output, strict=False)
+                output = json.loads(output, encoding='utf-8', strict=True)
             except:
                 pass
         return output
